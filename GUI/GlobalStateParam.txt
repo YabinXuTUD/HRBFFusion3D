@@ -1,0 +1,102 @@
+##!!!!Attension!!!!! remember to change the calibration parameter if you change the data set
+currentWorkingDirectory = "/media/yabinxu/My Passport/my_project/surface_reconstruction/DataSets/TUMDataSet/rgbd_dataset_freiburg1_desk"
+##sensortype : 1 for realtime device, 2 for off-line klg data, 3 for association file
+sensorType = 3;
+klgFileName = "fr1_desk.klg";
+AssociationFile = "associations.txt";
+##camera intrinsic
+parameterFileCvFormat = "TUM1.yaml";
+
+#--------------------------------------------------------------------------------------------
+#Hierachical Optimization Parameters
+#--------------------------------------------------------------------------------------------
+optimizationUseLocalBA =  false;    //local  BA
+optimizationUseGlobalBA = false;    //global BA
+optimizationVocabularyFile = "/home/yabinxu/workspace/hrbf_fusion/Core/src/ORB_SLAM2_m/Vocabulary/ORBvoc.txt"
+
+#--------------------------------------------------------------------------------------------
+#Preprocessing Parameters
+#--------------------------------------------------------------------------------------------
+preprocessingUsebilateralFilter = true;      
+preprocessingInitRadiusMultiplier = 4.0;     
+preprocessingCurvEstimationWindow = 3.0;     
+preprocessingCurvValidThreshold = 300;
+
+#use PCA or centre difference for normal estimation;
+preprocessingNormalEstimationPCA = 1.0;
+
+#for reconstruction-indicated confidence evaluation
+preprocessingUseConfEval = 0.0;
+preprocessingConfEvalEpsilon = 1000.0;
+
+#--------------------------------------------------------------------------------------------
+#Registration Parameters
+#--------------------------------------------------------------------------------------------
+registrationPreAlignSO3 = true;
+registrationJointICPWeight = 10.0;  
+
+#use sparse ICP term (for Debugging)
+registrationICPUseSparseICP = false;
+
+#plane constraint
+registrationUsePlaneConstraint = false;
+
+#corrrepondence search
+registrationICPUseCoorespondenceSearch = false;
+registrationICPNeighborSearchRadius = 2.0;
+
+#curvature-weighted icp
+registrationICPUseWeightedICP = true;
+registrationICPCurvWeightImpactControl = 10;
+
+#error threshold
+registrationICPErrorThreshold = 5e-05;
+registrationICPCovarianceThreshold = 1e-05;
+
+#color weighted by it's gradient
+registrationColorUseRGBGrad = false;  //if use rgb gradient as weight of RGB-D Odometry
+registrationColorPhotoThreshold = 115;
+
+##--------------------------------------------------------------------------------------------
+##Prediction Parameters
+##--------------------------------------------------------------------------------------------
+##window size for searching
+preictionWindowMultiplier = 3.0;   //pixel window search for HRBF reconstruction
+preictionMinNeighbors = 6.0;       //!!!minimun number of kernels
+preictionMaxNeighbors = 10.0;      //!!!maximun number of kernels
+preictionConfThreshold = 3.0;      
+
+##--------------------------------------------------------------------------------------------
+##Fusion Parameters
+##--------------------------------------------------------------------------------------------
+fusionMergeWindowMultiplier = 2.0;
+#HRBF cleaning
+fusionCleanWindowMultiplier = 2.0;
+
+#--------------------------------------------------------------------------------------------
+#Global Parameters
+#--------------------------------------------------------------------------------------------
+globalConfidenceThreshold = 5.0;       
+globalDenseEnoughThresh = 0.75;
+globalDepthCutoff = 3.5;
+
+#input output control for ICL-NUIM dataset
+globalInputICLNUIMDataset = false;
+
+#if load trajectory (Debugging for camparison)
+globalInputLoadTrajectory = false;
+globalInputTrajectoryFormat = "TUM" #save this later by a judgement statement
+globalInputTrajectoryFile = "hrbf_trajectory_whole.freiburg"
+
+#if save trajectory
+globalOutputSaveTrjectoryFile = true;
+globalOutputSaveTrjectoryFileType = TUM;  //different pose files have different initial pose(not really identity matrix): e.g. lefloch(TPAMI2017 paper) and zhou
+globalOutputCalculateMeanDistWithGroundTruth = false;
+globalOutputSavePointCloudConfThreshold = 0.0;  //ConfThreshold in saving data
+globalOutputsaveTimings = false;
+globalStartFrame = 0;
+globalEndFrame = -1;
+globalFrameToSkip = 0;
+globalExportFramePeriod = false;
+globalExportFrameStart = 0;
+globalExportFrameEnd = 1;

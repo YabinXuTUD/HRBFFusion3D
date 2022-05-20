@@ -1,0 +1,41 @@
+float3 vcurr;
+vcurr.x = vmap_curr.ptr (y       )[x];
+vcurr.y = vmap_curr.ptr (y + rows)[x];
+vcurr.z = vmap_curr.ptr (y + 2 * rows)[x];
+
+float3 vcurr_g = Rcurr * vcurr + tcurr;
+float3 vcurr_cp = Rprev_inv * (vcurr_g - tprev);
+
+int2 ukr;
+ukr.x = __float2int_rn (vcurr_cp.x * intr.fx / vcurr_cp.z + intr.cx);
+ukr.y = __float2int_rn (vcurr_cp.y * intr.fy / vcurr_cp.z + intr.cy);
+
+if(ukr.x < 0 || ukr.y < 0 || ukr.x >= cols || ukr.y >= rows || vcurr_cp.z < 0)
+    return false;
+
+float3 vprev_g;
+vprev_g.x = __ldg(&vmap_g_prev.ptr (ukr.y       )[ukr.x]);
+vprev_g.y = __ldg(&vmap_g_prev.ptr (ukr.y + rows)[ukr.x]);
+vprev_g.z = __ldg(&vmap_g_prev.ptr (ukr.y + 2 * rows)[ukr.x]);
+
+float3 ncurr;
+ncurr.x = nmap_curr.ptr (y)[x];
+ncurr.y = nmap_curr.ptr (y + rows)[x];
+ncurr.z = nmap_curr.ptr (y + 2 * rows)[x];
+
+float3 ncurr_g = Rcurr * ncurr;
+
+float3 nprev_g;
+nprev_g.x =  __ldg(&nmap_g_prev.ptr (ukr.y)[ukr.x]);
+nprev_g.y =  __ldg(&nmap_g_prev.ptr (ukr.y + rows)[ukr.x]);
+nprev_g.z =  __ldg(&nmap_g_prev.ptr (ukr.y + 2 * rows)[ukr.x]);
+
+float dist = norm (vprev_g - vcurr_g);
+float sine = norm (cross (ncurr_g, nprev_g));
+float cose = dot(ncurr_g, nprev_g);
+
+n = nprev_g;
+d = vprev_g;
+s = vcurr_g;
+
+return (sine < angleThres && dist <= distThres && !isnan (ncurr.x) && !isnan (nprev_g.x));
