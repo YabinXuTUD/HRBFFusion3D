@@ -176,8 +176,8 @@ void System::RunRGBD(int i, bool NeedAddNewKeyFrame)
         std::string depth = "depth";
 
         //Read image and depthmap from file
-        imRGB = cv::imread(GlobalStateParam::get().currentWorkingDirectory + "/" + vstrImageFilenamesRGB[i], CV_LOAD_IMAGE_UNCHANGED);
-        imD = cv::imread(GlobalStateParam::get().currentWorkingDirectory + "/" + vstrImageFilenamesD[i], CV_LOAD_IMAGE_UNCHANGED);
+        imRGB = cv::imread(GlobalStateParam::get().currentWorkingDirectory + "/" + vstrImageFilenamesRGB[i], cv::IMREAD_UNCHANGED);
+        imD = cv::imread(GlobalStateParam::get().currentWorkingDirectory + "/" + vstrImageFilenamesD[i], cv::IMREAD_UNCHANGED);
 
         double tframe = vTimestamps[i];
 

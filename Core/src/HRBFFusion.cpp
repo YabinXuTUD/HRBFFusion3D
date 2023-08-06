@@ -240,8 +240,8 @@ void HRBFFusion::LoadImagesAssociationFile(const std::string &strAssociationFile
 void HRBFFusion::inputFrame()
 {
     //Read image and depthmap from association.txt file
-    imRGB = cv::imread(GlobalStateParam::get().currentWorkingDirectory + "/" + vstrImageFilenamesRGB[tick -1], CV_LOAD_IMAGE_UNCHANGED);
-    imD = cv::imread(GlobalStateParam::get().currentWorkingDirectory + "/" + vstrImageFilenamesD[tick - 1], CV_LOAD_IMAGE_UNCHANGED);
+    imRGB = cv::imread(GlobalStateParam::get().currentWorkingDirectory + "/" + vstrImageFilenamesRGB[tick -1], cv::IMREAD_UNCHANGED);
+    imD = cv::imread(GlobalStateParam::get().currentWorkingDirectory + "/" + vstrImageFilenamesD[tick - 1], cv::IMREAD_UNCHANGED);
 
     double tframe = vTimestamps[tick -1];
     if(imRGB.empty())

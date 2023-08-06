@@ -1,5 +1,5 @@
 ##!!!!Attension!!!!! remember to change the calibration parameter if you change the data set
-currentWorkingDirectory = "/media/yabinxu/My Passport/my_project/surface_reconstruction/DataSets/TUMDataSet/rgbd_dataset_freiburg1_desk"
+currentWorkingDirectory = "/media/yabinxu/My Passport/my_project/HRBFFusion_RGB-D reconstruction/surface_reconstruction_tested_data/DataSets/TUMDataSet/rgbd_dataset_freiburg1_desk"
 ##sensortype : 1 for realtime device, 2 for off-line klg data, 3 for association file
 sensorType = 3;
 klgFileName = "fr1_desk.klg";
@@ -10,9 +10,9 @@ parameterFileCvFormat = "TUM1.yaml";
 #--------------------------------------------------------------------------------------------
 #Hierachical Optimization Parameters
 #--------------------------------------------------------------------------------------------
-optimizationUseLocalBA =  false;    //local  BA
-optimizationUseGlobalBA = false;    //global BA
-optimizationVocabularyFile = "/home/yabinxu/workspace/hrbf_fusion/Core/src/ORB_SLAM2_m/Vocabulary/ORBvoc.txt"
+optimizationUseLocalBA =  true;    //local  BA
+optimizationUseGlobalBA = true;    //global BA
+optimizationVocabularyFile = "/home/yabinxu/workspace/HRBFFusion3D/Core/src/ORB_SLAM2_m/Vocabulary/ORBvoc.txt"
 
 #--------------------------------------------------------------------------------------------
 #Preprocessing Parameters

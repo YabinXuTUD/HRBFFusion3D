@@ -23,7 +23,7 @@ find_package(ZLIB REQUIRED)
 find_package(Pangolin 0.5 REQUIRED)
 find_package(CUDA REQUIRED)
 find_package(ORBSLAM2 REQUIRED)
-#find_package(OpenNI2 REQUIRED)
+# find_package(OpenNI2 REQUIRED)
 find_package(hrbffusion REQUIRED)
 find_package(SuiteSparse REQUIRED)
 find_package(OpenMP)
@@ -56,8 +56,8 @@ include_directories(${HRBFFUSION_INCLUDE_DIR})
 include_directories(${ORBSLAM2_INCLUDE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/../../Core/src/ORB_SLAM2_m)
 include_directories(${CMAKE_SOURCE_DIR}/../../Core/src/ORB_SLAM2_m/include)
-set(OPENNI2_INCLUDE_DIR /home/yabinxu/library/OpenNI2/Include)
-set(OPENNI2_LIBRARY /home/yabinxu/library/OpenNI2/Bin/x64-Release/libOpenNI2.so)
+set(OPENNI2_INCLUDE_DIR /home/yabinxu/workspace/ElasticFusion/third-party/OpenNI2/Include)
+set(OPENNI2_LIBRARY /home/yabinxu/workspace/ElasticFusion/third-party/OpenNI2/Bin/x64-Release/libOpenNI2.so)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -luuid")
 include_directories(${OPENNI2_INCLUDE_DIR})
 #include_directories(${PCL_INCLUDE_DIRS})
@@ -127,9 +127,4 @@ target_link_libraries(HRBFfusion
         ${PROJECT_SOURCE_DIR}/../../Core/src/ORB_SLAM2_m/Thirdparty/g2o/lib/libg2o.so
         boost_system
         boost_filesystem
-#        ${G2O_CORE_LIBRARY}
-#        ${G2O_STUFF_LIBRARY}
-#        ${G2O_SOLVER_CHOLMOD}
-#        ${G2O_TYPES_SLAM3D}
         )
-target_include_directories(HRBFfusion PUBLIC ${Open3D_INCLUDE_DIRS})

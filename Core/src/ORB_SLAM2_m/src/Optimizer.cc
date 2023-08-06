@@ -1350,10 +1350,10 @@ void Optimizer::LocalBundleAdjustment3D(KeyFrame *pKF, bool *pbStopFlag, Map *pM
 }
 
 void Optimizer::OptimizeEssentialGraph(Map* pMap, KeyFrame* pLoopKF, KeyFrame* pCurKF,
-                                       const map<KeyFrame*,g2o::Sim3,std::less<KeyFrame*>,
-                                       Eigen::aligned_allocator<std::pair<const KeyFrame*, g2o::Sim3>>> &NonCorrectedSim3,
-                                       const map<KeyFrame*,g2o::Sim3,std::less<KeyFrame*>,
-                                       Eigen::aligned_allocator<std::pair<const KeyFrame*, g2o::Sim3>>> &CorrectedSim3,
+                                    const map<KeyFrame*,g2o::Sim3,std::less<KeyFrame*>,
+                                       Eigen::aligned_allocator<std::pair<KeyFrame* const, g2o::Sim3>>> &NonCorrectedSim3,
+                                    const map<KeyFrame*,g2o::Sim3,std::less<KeyFrame*>,
+                                       Eigen::aligned_allocator<std::pair<KeyFrame* const, g2o::Sim3>>> &CorrectedSim3,
                                        const map<KeyFrame *, set<KeyFrame *> > &LoopConnections, const bool &bFixScale)
 {
     // Setup optimizer
